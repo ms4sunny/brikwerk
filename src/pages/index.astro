@@ -1,17 +1,36 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/layout/Navbar';
+import Hero from '../components/sections/Hero';
+import WorkGrid from '../components/sections/WorkGrid';
+import TechStackWidget from '../components/sections/TechStackWidget';
 
+/* The new components we just created */
+import { Services } from '../components/sections/Services';
+import { Footer } from '../components/layout/Footer';
+
+const title = 'Brikwerk — Scalable Software Engineering for Ambitious Teams';
+const description =
+  'Brikwerk is a high-performance software engineering studio building scalable, production-grade digital products for B2B teams — architecture, web engineering, and design that drive growth.';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title={title} description={description}>
+  {/* Header Slot */}
+  <Fragment slot="header">
+    <Navbar client:load />
+  </Fragment>
+
+  {/* Main Page Content */}
+  <main>
+    <Hero client:load />
+    
+    <TechStackWidget client:visible />
+    
+    <Services client:visible />
+    
+    <WorkGrid client:visible />
+  </main>
+
+  {/* Footer */}
+  <Footer client:visible />
+</BaseLayout>

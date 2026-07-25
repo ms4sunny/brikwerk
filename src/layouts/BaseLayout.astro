@@ -1,0 +1,99 @@
+---
+import '../styles/global.css';
+import CustomCursor from '../components/ui/CustomCursor';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalURL?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title = 'Your Agency — Engineering the Future of Software',
+  description = 'A world-class software agency crafting high-performance digital products with modern engineering and design.',
+  ogImage = '/og-image.jpg',
+  canonicalURL = Astro.url.href,
+  noIndex = false,
+} = Astro.props as Props;
+
+const siteName = 'Your Agency';
+const fullTitle = title.includes(siteName) ? title : `${title} · ${siteName}`;
+---
+
+<!doctype html>
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Primary SEO -->
+    <title>{fullTitle}</title>
+    <meta name="title" content={fullTitle} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content={siteName} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={fullTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+
+    <!-- Theme / PWA -->
+    <meta name="theme-color" content="#030712" />
+    <meta name="color-scheme" content="dark" />
+
+    <!-- Preconnects for font performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Slot for page-specific structured data / extra head tags -->
+    <slot name="head" />
+  </head>
+
+  <body class="min-h-screen bg-void text-slate-200 font-sans antialiased selection:bg-primary/30">
+    <!-- Custom cursor overlay: mounted once, global to every page.
+         Renders nothing on touch devices or with prefers-reduced-motion. -->
+    <CustomCursor client:load />
+
+    <!-- Skip link for accessibility -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50
+             focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white"
+    >
+      Skip to content
+    </a>
+
+    <!-- Ambient background layer: grid + aurora glow, sits behind all content -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+      <div class="absolute inset-0 bg-tech-grid opacity-40"></div>
+      <div class="absolute -top-40 left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-primary/20 blur-[140px]"></div>
+      <div class="absolute bottom-0 right-0 h-[400px] w-[500px] rounded-full bg-secondary/10 blur-[120px]"></div>
+    </div>
+
+    <div class="relative flex min-h-screen flex-col">
+      <slot name="header" />
+
+      <main id="main-content" class="flex-1">
+        <div class="container-app">
+          <slot />
+        </div>
+      </main>
+
+      <slot name="footer" />
+    </div>
+  </body>
+</html>
