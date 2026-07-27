@@ -52,11 +52,11 @@ export default function Navbar() {
     <header
       className={`sticky top-0 z-50 w-full border-b transition-colors duration-300 ${
         isScrolled
-          ? 'border-white/10 bg-slate-950/80 backdrop-blur-lg'
-          : 'border-transparent bg-transparent backdrop-blur-none'
+          ? 'border-white/10 bg-charcoal/80 backdrop-blur-lg'
+          : 'border-transparent bg-transparent backdrop-blur-0'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex h-20 items-center justify-between py-4">
+      <div className="container-app flex h-20 items-center justify-between py-4">
         {/* Logo */}
         <a
           href="/"
@@ -65,7 +65,7 @@ export default function Navbar() {
         >
           <span>BRIKWERK</span>
           <span
-            className="h-2 w-2 rounded-full bg-primary-500 shadow-glow-primary transition-transform duration-300 group-hover:scale-125"
+            className="h-2 w-2 rounded-full bg-primary shadow-glow-primary transition-transform duration-300 group-hover:scale-125"
             aria-hidden="true"
           />
         </a>
@@ -79,17 +79,14 @@ export default function Navbar() {
               className="group relative text-sm font-medium text-slate-300 transition-colors hover:text-white"
             >
               {link.label}
-              <span className="absolute -bottom-1 left-0 h-px w-0 bg-primary-500 transition-all duration-300 group-hover:w-full" />
+              <span className="absolute -bottom-1 left-0 h-px w-0 bg-primary transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
         </nav>
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary-600 hover:bg-primary-500 text-white text-sm font-semibold transition-colors"
-          >
+          <a href="/contact" className="btn-primary text-sm">
             Book Consultation
             <ArrowRight className="h-4 w-4" />
           </a>
@@ -114,7 +111,7 @@ export default function Navbar() {
           <>
             <motion.div
               key="overlay"
-              className="fixed inset-0 top-20 z-40 bg-slate-950/70 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 top-20 z-40 bg-void/70 backdrop-blur-sm md:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -125,14 +122,14 @@ export default function Navbar() {
             <motion.nav
               id="mobile-menu"
               key="drawer"
-              className="fixed inset-x-0 top-20 z-40 border-t border-white/10 bg-slate-900/95 backdrop-blur-xl md:hidden"
+              className="glass-panel fixed inset-x-0 top-20 z-40 border-t border-white/10 md:hidden"
               initial={{ opacity: 0, y: -16 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -16 }}
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
               aria-label="Mobile"
             >
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-1 py-6">
+              <div className="container-app flex flex-col gap-1 py-6">
                 {NAV_LINKS.map((link, i) => (
                   <motion.a
                     key={link.href}
@@ -148,7 +145,7 @@ export default function Navbar() {
                 ))}
                 <a
                   href="/contact"
-                  className="mt-4 flex items-center justify-center gap-2 rounded-lg bg-primary-600 px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-500"
+                  className="btn-primary mt-4 justify-center text-sm"
                   onClick={() => setIsOpen(false)}
                 >
                   Book Consultation
