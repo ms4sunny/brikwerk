@@ -5,9 +5,12 @@ import Hero from '../components/sections/Hero';
 import WorkGrid from '../components/sections/WorkGrid';
 import TechStackWidget from '../components/sections/TechStackWidget';
 
-/* The new components we just created */
+/* Core studio sections */
 import { Services } from '../components/sections/Services';
-import { Footer } from '../components/layout/Footer';
+import Footer from '../components/layout/Footer';
+
+/* Interactive Calculator / Intake Widget */
+import ProjectEstimator from '../components/calculator/ProjectEstimator';
 
 const title = 'Brikwerk — Scalable Software Engineering for Ambitious Teams';
 const description =
@@ -29,6 +32,11 @@ const description =
     <Services client:visible />
     
     <WorkGrid client:visible />
+
+    {/* Project Scope & Budget Estimator Section */}
+    <section id="estimator" class="py-12 bg-slate-950 relative border-t border-white/5">
+      <ProjectEstimator client:visible />
+    </section>
   </main>
 
   {/* Footer */}
