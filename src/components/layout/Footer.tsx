@@ -1,4 +1,4 @@
-import { Terminal, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 
 interface FooterSection {
   title: string;
@@ -12,6 +12,7 @@ const FOOTER_SECTIONS: FooterSection[] = [
       { label: 'Home', href: '/' },
       { label: 'Services', href: '/services' },
       { label: 'Work / Case Studies', href: '/work' },
+      { label: 'Solutions', href: '/solutions' },
       { label: 'About Studio', href: '/about' },
       { label: 'Start Project', href: '/contact' },
     ],
@@ -66,28 +67,29 @@ function LinkedinIcon({ className }: { className?: string }) {
 /**
  * Footer
  * 4-column studio footer featuring brand mark, quick links, a live
- * status pulse badge, and social/legal metadata. Padding stays
- * intentionally asymmetric (`pt-16 pb-12`) rather than `section-y` —
- * footers conventionally carry less bottom whitespace than a content
- * section since there's no next section to breathe into.
+ * status pulse badge, and social/legal metadata.
  */
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-white/10 bg-void pb-12 pt-16 text-slate-400">
+    <footer className="relative overflow-hidden border-t border-white/10 bg-slate-950/80 backdrop-blur-lg pb-12 pt-16 text-slate-400">
       {/* Top glow line */}
-      <div className="absolute left-1/2 top-0 h-px w-3/4 -translate-x-1/2 bg-linear-to-r from-transparent via-primary/50 to-transparent" />
+      <div className="absolute left-1/2 top-0 h-px w-3/4 -translate-x-1/2 bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
 
-      <div className="container-app">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 border-b border-white/10 pb-12 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand & status column */}
           <div className="space-y-6 lg:col-span-2">
-            <a href="/" className="flex items-center gap-2.5 text-xl font-bold tracking-tight text-white">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-linear-to-tr from-primary to-secondary text-white shadow-glow-primary">
-                <Terminal className="h-5 w-5" />
-              </span>
-              <span className="font-mono text-lg tracking-wider">
-                BRIKWERK<span className="text-primary-400">.</span>
-              </span>
+            {/* Matching Navbar Logo Style Exactly */}
+            <a
+              href="/"
+              className="group flex items-center gap-2 text-lg font-extrabold tracking-tight text-white"
+              aria-label="Brikwerk — home"
+            >
+              <span>BRIKWERK</span>
+              <span
+                className="h-2 w-2 rounded-full bg-primary-500 shadow-glow-primary transition-transform duration-300 group-hover:scale-125"
+                aria-hidden="true"
+              />
             </a>
 
             <p className="max-w-sm text-sm leading-relaxed text-slate-400">
@@ -96,10 +98,10 @@ export default function Footer() {
             </p>
 
             {/* Live infrastructure status indicator */}
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-secondary/20 bg-secondary/10 px-3.5 py-1.5 text-xs text-secondary-400">
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3.5 py-1.5 text-xs text-emerald-400">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary-500" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
               </span>
               <span className="font-mono font-medium">All Systems Operational (99.9% Uptime)</span>
             </div>

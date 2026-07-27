@@ -7,6 +7,7 @@ interface NavLink {
   href: string;
 }
 
+// Updated to point to section IDs on the main page for smooth navigation
 const NAV_LINKS: NavLink[] = [
   { label: 'Services', href: '/services' },
   { label: 'Work', href: '/work' },
@@ -86,7 +87,7 @@ export default function Navbar() {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <a href="/contact" className="btn-primary text-sm">
+          <a href="/#contact" className="btn-primary text-sm">
             Book Consultation
             <ArrowRight className="h-4 w-4" />
           </a>
@@ -144,7 +145,7 @@ export default function Navbar() {
                   </motion.a>
                 ))}
                 <a
-                  href="/contact"
+                  href="/#contact"
                   className="btn-primary mt-4 justify-center text-sm"
                   onClick={() => setIsOpen(false)}
                 >

@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
+---
+
+<BaseLayout title="Selected Work & Case Studies | Brikwerk Engineering">
+  <Navbar client:load />
+  <main class="min-h-screen pt-32 pb-20 px-6 max-w-7xl mx-auto">
+    <div class="space-y-4 max-w-3xl">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono">
+        <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+        Case Studies
+      </div>
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white">
+        Engineering Outcomes & Proof
+      </h1>
+      <p class="text-lg text-neutral-400">
+        A showcase of production software, custom platforms, and measurable performance benchmarks.
+      </p>
+    </div>
+
+    <div class="mt-16 p-12 rounded-2xl bg-neutral-900/40 border border-neutral-800/80 text-center">
+      <p class="text-neutral-400 font-mono text-sm">Case studies and WorkGrid.tsx interactive showcase coming in Phase 3.</p>
+    </div>
+  </main>
+  <Footer client:load />
+</BaseLayout>
