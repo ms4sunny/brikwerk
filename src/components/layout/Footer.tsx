@@ -65,24 +65,24 @@ function LinkedinIcon({ className }: { className?: string }) {
 
 /**
  * Footer
- * 4-column studio footer featuring brand philosophy, quick links,
- * live status indicator pulse badge, and social/legal metadata.
+ * 4-column studio footer featuring brand mark, quick links, a live
+ * status pulse badge, and social/legal metadata. Padding stays
+ * intentionally asymmetric (`pt-16 pb-12`) rather than `section-y` —
+ * footers conventionally carry less bottom whitespace than a content
+ * section since there's no next section to breathe into.
  */
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/10 bg-slate-950 pt-16 pb-12 overflow-hidden text-slate-400">
-      {/* Top glow line using h-px */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px bg-linear-to-r from-transparent via-primary-500/50 to-transparent" />
+    <footer className="relative overflow-hidden border-t border-white/10 bg-void pb-12 pt-16 text-slate-400">
+      {/* Top glow line */}
+      <div className="absolute left-1/2 top-0 h-px w-3/4 -translate-x-1/2 bg-linear-to-r from-transparent via-primary/50 to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-12 border-b border-white/10">
-          {/* Brand & Status Column */}
-          <div className="lg:col-span-2 space-y-6">
-            <a
-              href="/"
-              className="flex items-center gap-2.5 text-white font-bold text-xl tracking-tight"
-            >
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-linear-to-tr from-primary-600 to-indigo-500 text-white shadow-md shadow-primary-500/20">
+      <div className="container-app">
+        <div className="grid grid-cols-1 gap-12 border-b border-white/10 pb-12 md:grid-cols-2 lg:grid-cols-5">
+          {/* Brand & status column */}
+          <div className="space-y-6 lg:col-span-2">
+            <a href="/" className="flex items-center gap-2.5 text-xl font-bold tracking-tight text-white">
+              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-linear-to-tr from-primary to-secondary text-white shadow-glow-primary">
                 <Terminal className="h-5 w-5" />
               </span>
               <span className="font-mono text-lg tracking-wider">
@@ -90,24 +90,25 @@ export default function Footer() {
               </span>
             </a>
 
-            <p className="text-sm leading-relaxed max-w-sm text-slate-400">
-              Senior web engineering and high-performance software architecture for forward-thinking digital products. Built with zero templates and zero tech debt.
+            <p className="max-w-sm text-sm leading-relaxed text-slate-400">
+              Senior web engineering and high-performance software architecture for
+              forward-thinking digital products. Built with zero templates and zero tech debt.
             </p>
 
-            {/* Live Infrastructure System Status Indicator */}
-            <div className="inline-flex items-center gap-2.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3.5 py-1.5 text-xs text-emerald-400">
+            {/* Live infrastructure status indicator */}
+            <div className="inline-flex items-center gap-2.5 rounded-full border border-secondary/20 bg-secondary/10 px-3.5 py-1.5 text-xs text-secondary-400">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-secondary-400 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-secondary-500" />
               </span>
               <span className="font-mono font-medium">All Systems Operational (99.9% Uptime)</span>
             </div>
           </div>
 
-          {/* Navigation Links Columns */}
+          {/* Navigation link columns */}
           {FOOTER_SECTIONS.map((section) => (
             <div key={section.title} className="space-y-4">
-              <h3 className="text-xs font-mono uppercase tracking-wider text-white font-semibold">
+              <h3 className="font-mono text-xs font-semibold uppercase tracking-wider text-white">
                 {section.title}
               </h3>
               <ul className="space-y-2.5 text-sm">
@@ -115,11 +116,11 @@ export default function Footer() {
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      className="hover:text-white transition-colors duration-200 inline-flex items-center gap-1 group"
+                      className="group inline-flex items-center gap-1 transition-colors duration-200 hover:text-white"
                     >
                       <span>{link.label}</span>
                       {link.isExternal && (
-                        <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                        <ArrowUpRight className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
                       )}
                     </a>
                   </li>
@@ -129,8 +130,8 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom Socials & Copyright Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+        {/* Bottom socials & copyright bar */}
+        <div className="flex flex-col items-center justify-between gap-4 pt-8 text-xs sm:flex-row">
           <p>© {new Date().getFullYear()} Brikwerk Engineering. All rights reserved.</p>
 
           <div className="flex items-center gap-3">
@@ -138,7 +139,7 @@ export default function Footer() {
               href="https://github.com"
               target="_blank"
               rel="noreferrer"
-              className="p-2 rounded-lg border border-white/5 bg-white/5 hover:text-white hover:bg-white/10 transition-colors"
+              className="rounded-lg border border-white/10 bg-white/5 p-2 transition-colors hover:bg-white/10 hover:text-white"
               aria-label="GitHub"
             >
               <GithubIcon className="h-4 w-4" />
@@ -147,7 +148,7 @@ export default function Footer() {
               href="https://twitter.com"
               target="_blank"
               rel="noreferrer"
-              className="p-2 rounded-lg border border-white/5 bg-white/5 hover:text-white hover:bg-white/10 transition-colors"
+              className="rounded-lg border border-white/10 bg-white/5 p-2 transition-colors hover:bg-white/10 hover:text-white"
               aria-label="Twitter / X"
             >
               <TwitterIcon className="h-4 w-4" />
@@ -156,7 +157,7 @@ export default function Footer() {
               href="https://linkedin.com"
               target="_blank"
               rel="noreferrer"
-              className="p-2 rounded-lg border border-white/5 bg-white/5 hover:text-white hover:bg-white/10 transition-colors"
+              className="rounded-lg border border-white/10 bg-white/5 p-2 transition-colors hover:bg-white/10 hover:text-white"
               aria-label="LinkedIn"
             >
               <LinkedinIcon className="h-4 w-4" />

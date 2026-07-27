@@ -1,4 +1,4 @@
-import { ArrowUpRight, Code2, Cpu, Zap, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight, Code2 } from 'lucide-react';
 
 interface CaseStudy {
   id: string;
@@ -50,58 +50,63 @@ const CASE_STUDIES: CaseStudy[] = [
   },
 ];
 
+/**
+ * CaseStudies
+ * Section wrapped in `section-y` + `container-app` to match the vertical
+ * rhythm and horizontal gutters used across the rest of the site — same
+ * caveat as ProjectEstimator: drop `container-app` here if this ever sits
+ * inside a `<main>` that already applies it.
+ */
 export default function CaseStudies() {
   return (
-    <section className="py-20 relative bg-slate-950 text-slate-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="max-w-2xl mb-12">
-          <div className="inline-flex items-center gap-2 text-primary-400 font-mono text-xs uppercase tracking-widest mb-3">
-            <Code2 className="h-4 w-4" /> Selected Engineering Works
+    <section className="section-y relative">
+      <div className="container-app">
+        {/* Section header */}
+        <div className="mb-12 max-w-2xl">
+          <div className="mb-3 flex items-center gap-2">
+            <Code2 className="h-4 w-4 text-primary-400" />
+            <span className="eyebrow">Selected Engineering Works</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Proof in Production.
           </h2>
-          <p className="mt-4 text-slate-400 text-base leading-relaxed">
-            Zero fluff, zero boilerplate. A collection of engineered web platforms built for performance, resilience, and user engagement.
+          <p className="mt-4 text-base leading-relaxed text-slate-400">
+            Zero fluff, zero boilerplate. A collection of engineered web platforms built for
+            performance, resilience, and user engagement.
           </p>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {CASE_STUDIES.map((study) => (
             <div
               key={study.id}
-              className="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-slate-900/50 p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-primary-500/50 hover:bg-slate-900/80"
+              className="glass-card group relative flex flex-col justify-between p-6 transition-all duration-300 hover:border-primary/40 hover:shadow-glow-primary sm:p-8"
             >
               <div>
-                {/* Category & Badge */}
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-xs font-mono uppercase text-primary-400 tracking-wider">
+                {/* Category & client */}
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="font-mono text-xs uppercase tracking-wider text-primary-400">
                     {study.category}
                   </span>
-                  <span className="text-[11px] font-mono text-slate-500">
-                    {study.client}
-                  </span>
+                  <span className="font-mono text-[11px] text-slate-500">{study.client}</span>
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary-300 transition-colors flex items-center justify-between">
+                <h3 className="mb-3 flex items-center justify-between text-xl font-bold text-white transition-colors group-hover:text-primary-300">
                   {study.title}
-                  <ArrowUpRight className="h-5 w-5 opacity-0 group-hover:opacity-100 transition-opacity text-primary-400" />
+                  <ArrowUpRight className="h-5 w-5 text-primary-400 opacity-0 transition-opacity group-hover:opacity-100" />
                 </h3>
 
-                <p className="text-xs text-slate-400 leading-relaxed mb-6">
-                  {study.description}
-                </p>
+                <p className="mb-6 text-xs leading-relaxed text-slate-400">{study.description}</p>
 
-                {/* Metrics Callout Box */}
-                <div className="grid grid-cols-2 gap-3 p-3 rounded-xl bg-white/5 border border-white/5 mb-6">
+                {/* Metrics callout */}
+                <div className="mb-6 grid grid-cols-2 gap-3 rounded-xl border border-white/10 bg-white/5 p-3">
                   {study.metrics.map((m, idx) => (
                     <div key={idx}>
-                      <div className="text-base font-mono font-bold text-emerald-400">
+                      <div className="font-mono text-base font-bold text-secondary-400">
                         {m.value}
                       </div>
-                      <div className="text-[10px] text-slate-400 uppercase tracking-wider font-mono">
+                      <div className="font-mono text-[10px] uppercase tracking-wider text-slate-400">
                         {m.label}
                       </div>
                     </div>
@@ -109,12 +114,12 @@ export default function CaseStudies() {
                 </div>
               </div>
 
-              {/* Tech Tags Footer */}
-              <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/5">
+              {/* Tech tags */}
+              <div className="flex flex-wrap gap-1.5 border-t border-white/10 pt-4">
                 {study.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-[10px] font-mono px-2 py-0.5 rounded border border-white/10 bg-white/5 text-slate-300"
+                    className="rounded-md border border-white/10 bg-white/5 px-2 py-0.5 font-mono text-[10px] text-slate-300"
                   >
                     {tag}
                   </span>

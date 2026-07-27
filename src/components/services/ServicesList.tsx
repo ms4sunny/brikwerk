@@ -1,8 +1,8 @@
-import { Terminal, Cpu, ShieldCheck, Gauge, Check } from 'lucide-react';
+import { Terminal, Cpu, ShieldCheck, Gauge, Check, type LucideIcon } from 'lucide-react';
 
 interface ServiceItem {
   id: string;
-  icon: typeof Terminal;
+  icon: LucideIcon;
   title: string;
   subtitle: string;
   description: string;
@@ -44,47 +44,57 @@ const SERVICES: ServiceItem[] = [
   },
 ];
 
+/**
+ * ServicesList
+ * Section wrapped in `section-y` + `container-app` to match the rest of
+ * the site's rhythm/gutters — same caveat as ProjectEstimator/CaseStudies:
+ * drop `container-app` if this ends up inside a `<main>` that already
+ * applies it.
+ */
 export default function ServicesList() {
   return (
-    <section className="py-20 relative bg-slate-900/40 text-slate-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mb-16">
-          <div className="inline-flex items-center gap-2 text-primary-400 font-mono text-xs uppercase tracking-widest mb-3">
-            <Cpu className="h-4 w-4" /> Core Capabilities
+    <section className="section-y relative">
+      <div className="container-app">
+        <div className="mb-16 max-w-2xl">
+          <div className="mb-3 flex items-center gap-2">
+            <Cpu className="h-4 w-4 text-primary-400" />
+            <span className="eyebrow">Core Capabilities</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Engineering Precision for the Web.
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {SERVICES.map((service) => {
             const Icon = service.icon;
             return (
               <div
                 key={service.id}
-                className="rounded-2xl border border-white/10 bg-slate-950 p-8 flex flex-col justify-between hover:border-primary-500/40 transition-colors"
+                className="glass-card flex flex-col justify-between p-8 transition-all duration-300 hover:border-primary/40 hover:shadow-glow-primary"
               >
                 <div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-3 rounded-xl bg-primary-500/10 text-primary-400 border border-primary-500/20">
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="rounded-xl border border-primary/20 bg-primary/10 p-3 text-primary-400">
                       <Icon className="h-6 w-6" />
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-white">{service.title}</h3>
-                      <p className="text-xs font-mono text-slate-400">{service.subtitle}</p>
+                      <p className="font-mono text-xs text-slate-400">{service.subtitle}</p>
                     </div>
                   </div>
 
-                  <p className="text-sm text-slate-300 leading-relaxed mb-6">
+                  <p className="mb-6 text-sm leading-relaxed text-slate-300">
                     {service.description}
                   </p>
 
-                  <div className="space-y-2 pt-4 border-t border-white/5">
-                    <p className="text-xs font-mono text-slate-400 uppercase tracking-wider mb-2">Deliverables:</p>
+                  <div className="space-y-2 border-t border-white/10 pt-4">
+                    <p className="mb-2 font-mono text-xs uppercase tracking-wider text-slate-400">
+                      Deliverables:
+                    </p>
                     {service.deliverables.map((item, idx) => (
                       <div key={idx} className="flex items-center gap-2 text-xs text-slate-300">
-                        <Check className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                        <Check className="h-3.5 w-3.5 shrink-0 text-secondary-400" />
                         <span>{item}</span>
                       </div>
                     ))}
