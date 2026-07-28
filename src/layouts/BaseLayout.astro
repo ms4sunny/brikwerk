@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import CustomCursor from '../components/ui/CustomCursor';
+import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
 
 export interface Props {
   title?: string;
@@ -11,14 +13,14 @@ export interface Props {
 }
 
 const {
-  title = 'Your Agency — Engineering the Future of Software',
-  description = 'A world-class software agency crafting high-performance digital products with modern engineering and design.',
+  title = 'Brikwerk — Modern Web Engineering & Interactive Applications',
+  description = 'Brikwerk is an independent web engineering brand crafting high-performance web applications, interactive UI engines, and engaging digital platforms.',
   ogImage = '/og-image.jpg',
   canonicalURL = Astro.url.href,
   noIndex = false,
 } = Astro.props as Props;
 
-const siteName = 'Your Agency';
+const siteName = 'Brikwerk';
 const fullTitle = title.includes(siteName) ? title : `${title} · ${siteName}`;
 ---
 
@@ -64,15 +66,13 @@ const fullTitle = title.includes(siteName) ? title : `${title} · ${siteName}`;
   </head>
 
   <body class="min-h-screen bg-void text-slate-200 font-sans antialiased selection:bg-primary/30">
-    <!-- Custom cursor overlay: mounted once, global to every page.
-         Renders nothing on touch devices or with prefers-reduced-motion. -->
+    <!-- Custom cursor overlay: mounted once, global to every page. -->
     <CustomCursor client:load />
 
     <!-- Skip link for accessibility -->
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50
-             focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-white"
     >
       Skip to content
     </a>
@@ -84,37 +84,44 @@ const fullTitle = title.includes(siteName) ? title : `${title} · ${siteName}`;
       <div class="absolute bottom-0 right-0 h-400px w-500px rounded-full bg-secondary/10 blur-[120px]"></div>
     </div>
 
-      <!-- Active Construction Banner -->
-<div class="relative z-40 bg-slate-900/90 border-b border-cyan-500/30 px-6 py-4 backdrop-blur-md">
-  <div class="max-w-7xl mx-auto flex items-center justify-center gap-3.5 text-base sm:text-lg font-medium text-slate-200">
-    <!-- Pulse Indicator Dot -->
-    <span class="relative flex h-3.5 w-3.5 shrink-0">
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-cyan-500"></span>
-    </span>
-    
-    <!-- Wrench Icon -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
-    </svg>
-    
-    <!-- Banner Message -->
-    <span>
-      <strong class="text-white font-semibold">Active Build Phase:</strong> Some pages are currently under construction.
-    </span>
-  </div>
-</div>
+    <!-- Active Construction Banner -->
+    <div class="relative z-40 bg-slate-900/90 border-b border-cyan-500/30 px-6 py-4 backdrop-blur-md">
+      <div class="max-w-7xl mx-auto flex items-center justify-center gap-3.5 text-base sm:text-lg font-medium text-slate-200">
+        <!-- Pulse Indicator Dot -->
+        <span class="relative flex h-3.5 w-3.5 shrink-0">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-cyan-500"></span>
+        </span>
+        
+        <!-- Wrench Icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-cyan-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+        </svg>
+        
+        <!-- Banner Message -->
+        <span>
+          <strong class="text-white font-semibold">Active Build Phase:</strong> Some pages are currently under construction.
+        </span>
+      </div>
+    </div>
 
     <div class="relative flex min-h-screen flex-col">
-      <slot name="header" />
+      <!-- Global Navigation (Fallback or explicit slot override) -->
+      <slot name="header">
+        <Navbar client:load />
+      </slot>
 
+      <!-- Main Body Content -->
       <main id="main-content" class="flex-1">
         <div class="container-app">
           <slot />
         </div>
       </main>
 
-      <slot name="footer" />
+      <!-- Global Footer (Fallback or explicit slot override) -->
+      <slot name="footer">
+        <Footer client:visible />
+      </slot>
     </div>
   </body>
 </html>

@@ -1,39 +1,197 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
+
+// Capabilities matrix definition
+const capabilities = [
+  {
+    id: 'web-apps',
+    title: 'Custom Web Platforms',
+    category: 'Full-Stack Engineering',
+    description: 'High-speed, scalable web applications built with modern frameworks. Zero fluff, strict type safety, and blazing fast render times.',
+    tech: ['React', 'Astro', 'TypeScript', 'Tailwind CSS', 'Node.js'],
+    features: [
+      'Server-side rendering & static generation',
+      'API integration & serverless endpoints',
+      'Optimized Lighthouse performance (95+ score target)',
+      'Custom database design & state management'
+    ]
+  },
+  {
+    id: 'interactive-ui',
+    title: 'Interactive UI & Motion',
+    category: 'Frontend & Experience Design',
+    description: 'Custom animations, cursor engines, and engaging UI elements designed to capture consumer attention and elevate digital brands.',
+    tech: ['Canvas API', 'Framer Motion', 'WebGL', 'Tailwind CSS'],
+    features: [
+      'Custom cursor engines & desktop/mobile touch handling',
+      'Hardware-accelerated CSS/JS animations',
+      'Custom audio players & dynamic widgets',
+      'Responsive design across 100% of viewports'
+    ]
+  },
+  {
+    id: 'perf-tuning',
+    title: 'Architecture & Performance',
+    category: 'Optimization & Security',
+    description: 'Auditing existing codebases to eliminate layout shifts, reduce bundle sizes, and optimize core web vitals for maximum retention.',
+    tech: ['Core Web Vitals', 'Bundle Analysis', 'SEO Optimization', 'CI/CD Pipelines'],
+    features: [
+      'Sub-second page load optimizations',
+      'SEO & OpenGraph metadata architecture',
+      'Deployment automation (Vercel/Netlify)',
+      'Security headers & clean environment configuration'
+    ]
+  }
+];
+
+const engagementModels = [
+  {
+    title: 'Project-Based Build',
+    timeline: '1 - 4 Weeks',
+    idealFor: 'Complete web apps, interactive landing experiences, or full platform rebuilds.',
+    perks: ['Fixed scope & clear deliverables', 'Direct engineer-to-client communication', 'Source code handover & deployment setup']
+  },
+  {
+    title: 'Dedicated Engineering',
+    timeline: 'Ongoing / Retainer',
+    idealFor: 'Continuous feature releases, performance monitoring, and UI iterations.',
+    perks: ['Priority task backlog handling', 'Rapid turnarounds', 'Proactive security & stack updates']
+  }
+];
 ---
 
-<BaseLayout title="Services & Capabilities | Brikwerk Engineering">
-  <Navbar client:load />
-  <main class="min-h-screen pt-32 pb-20 px-6 max-w-7xl mx-auto">
-    <div class="space-y-4 max-w-3xl">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-        Technical Capabilities
+<BaseLayout 
+  title="Services & Capabilities — Brikwerk"
+  description="Technical capabilities, full-stack web engineering services, and architecture design offered by Brikwerk."
+>
+  <div class="py-12 sm:py-20">
+    
+    <!-- Hero Section -->
+    <section class="text-center max-w-4xl mx-auto px-4 mb-20">
+      <div class="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1.5 text-xs font-mono font-medium text-cyan-400 mb-6">
+        <span class="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+        Engineering Matrix 2026
       </div>
-      <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white">
-        Architectural Engineering & Advisory
+      
+      <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white mb-6 leading-tight">
+        High-Performance Web Solutions, <br class="hidden sm:inline" />
+        <span class="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 via-teal-300 to-indigo-400">
+          Built Without Compromise.
+        </span>
       </h1>
-      <p class="text-lg text-neutral-400">
-        High-performance frontend systems, scalable backend infrastructure, and comprehensive codebase audits.
+      
+      <p class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+        We specialize in building modern, fast, and visually striking web platforms designed for real social engagement and bulletproof performance.
       </p>
-    </div>
+    </section>
 
-    <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
-      <div class="p-8 rounded-2xl bg-neutral-900/50 border border-neutral-800 backdrop-blur-md">
-        <h3 class="text-xl font-semibold text-white mb-2">Frontend Systems</h3>
-        <p class="text-sm text-neutral-400">Astro 5, Next.js, Framer Motion, and Tailwind v4 systems built for sub-second page loads.</p>
+    <!-- Capabilities Grid -->
+    <section class="max-w-7xl mx-auto px-4 mb-24">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 border-b border-slate-800 pb-6 gap-4">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Core Capabilities</h2>
+          <p class="text-slate-400 text-sm mt-1">Direct breakdown of our technical implementation stack.</p>
+        </div>
+        <a href="#estimator" class="text-xs font-mono text-cyan-400 hover:text-cyan-300 flex items-center gap-1">
+          Jump to Scope Estimator &rarr;
+        </a>
       </div>
-      <div class="p-8 rounded-2xl bg-neutral-900/50 border border-neutral-800 backdrop-blur-md">
-        <h3 class="text-xl font-semibold text-white mb-2">Backend & APIs</h3>
-        <p class="text-sm text-neutral-400">Serverless API architectures, Database design, and robust integration pipelines.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {capabilities.map((item) => (
+          <div class="group relative rounded-2xl border border-slate-800 bg-slate-900/60 p-6 sm:p-8 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/40 hover:bg-slate-900/90 flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-mono text-cyan-400 block mb-2">{item.category}</span>
+              <h3 class="text-xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors">
+                {item.title}
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6">
+                {item.description}
+              </p>
+
+              <!-- Feature Checklist -->
+              <ul class="space-y-2.5 mb-8 border-t border-slate-800/80 pt-6">
+                {item.features.map((feature) => (
+                  <li class="flex items-start gap-2.5 text-xs text-slate-300">
+                    <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <!-- Tech Tags -->
+            <div class="pt-4 border-t border-slate-800/60 flex flex-wrap gap-1.5">
+              {item.tech.map((t) => (
+                <span class="rounded-md border border-slate-800 bg-slate-950/80 px-2 py-0.5 text-[11px] font-mono text-slate-400">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
-      <div class="p-8 rounded-2xl bg-neutral-900/50 border border-neutral-800 backdrop-blur-md">
-        <h3 class="text-xl font-semibold text-white mb-2">System Audits</h3>
-        <p class="text-sm text-neutral-400">Performance optimization, TypeScript type safety refactoring, and security reviews.</p>
+    </section>
+
+    <!-- Engagement Models -->
+    <section class="max-w-7xl mx-auto px-4 mb-24">
+      <div class="mb-12 border-b border-slate-800 pb-6">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Engagement Models</h2>
+        <p class="text-slate-400 text-sm mt-1">Flexible execution options tailored to your project timeline.</p>
       </div>
-    </div>
-  </main>
-  <Footer client:load />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {engagementModels.map((model) => (
+          <div class="rounded-2xl border border-slate-800 bg-slate-900/40 p-8 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="text-xl font-bold text-white">{model.title}</h3>
+                <span class="rounded-full bg-cyan-500/10 border border-cyan-500/30 px-3 py-1 text-xs font-mono text-cyan-400">
+                  {model.timeline}
+                </span>
+              </div>
+              <p class="text-slate-400 text-sm mb-6">{model.idealFor}</p>
+              
+              <ul class="space-y-3 mb-6">
+                {model.perks.map((perk) => (
+                  <li class="flex items-center gap-2 text-sm text-slate-300">
+                    <span class="h-1.5 w-1.5 rounded-full bg-cyan-400"></span>
+                    {perk}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA / Estimator Link Anchor -->
+    <section id="estimator" class="max-w-5xl mx-auto px-4">
+      <div class="relative overflow-hidden rounded-3xl border border-cyan-500/30 bg-linear-to-b from-slate-900/90 to-slate-950 p-8 sm:p-12 text-center backdrop-blur-xl shadow-2xl">
+        <!-- Glow accents -->
+        <div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-48 w-96 rounded-full bg-cyan-500/20 blur-[100px]"></div>
+
+        <h2 class="relative z-10 text-2xl sm:text-4xl font-extrabold text-white mb-4">
+          Ready to estimate your build?
+        </h2>
+        <p class="relative z-10 text-slate-400 text-sm sm:text-base max-w-xl mx-auto mb-8">
+          Use our interactive project scope tool to calculate technical requirements and send a brief directly to our engineering queue.
+        </p>
+
+        <a 
+          href="/#estimator" 
+          class="relative z-10 inline-flex items-center gap-2 rounded-xl bg-cyan-500 px-8 py-3.5 text-sm font-bold text-slate-950 hover:bg-cyan-400 transition-all duration-200 shadow-lg shadow-cyan-500/25"
+        >
+          Launch Scope Estimator
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+  </div>
 </BaseLayout>

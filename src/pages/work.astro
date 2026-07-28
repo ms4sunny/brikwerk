@@ -1,28 +1,203 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
+
+const projects = [
+  {
+    id: 'noirwave',
+    title: 'Noirwave',
+    tagline: 'Interactive Aesthetic Web Experience & Custom UI Platform',
+    category: 'Interactive Web Experience',
+    liveUrl: 'https://noirwave-sunny.netlify.app',
+    status: 'Live on Netlify',
+    description: 'A social-focused digital platform featuring custom cursor engines, dynamic audio skin controls, and a retro interactive chiptune widget built for maximum user engagement.',
+    highlights: [
+      '10 custom touch-compatible cursor animations',
+      'Toggleable music player interface with customizable skins',
+      'Interactive chiptune popup widget with audio state toggles',
+      'Sub-second initial paint & fluid CSS keyframe transitions'
+    ],
+    tech: ['HTML5', 'CSS3 / Custom Motion', 'JavaScript', 'Web Audio API', 'Netlify']
+  },
+  {
+    id: 'questify',
+    title: 'Questify',
+    tagline: 'Gamified Habit Tracking & Daily Task Engine',
+    category: 'Productivity Application',
+    liveUrl: 'https://questify-habit.netlify.app',
+    status: 'Live on Netlify',
+    description: 'A gamified productivity web tool that transforms daily habit tracking into an engaging quest system with streak dynamics and clean state persistence.',
+    highlights: [
+      'Interactive quest completion engine with dynamic streak counts',
+      'Responsive goal tracking & visual progress indicators',
+      'Local state persistence for instant load times',
+      'Minimalist dark UI optimized for mobile & desktop touch'
+    ],
+    tech: ['JavaScript', 'HTML5', 'CSS3', 'Local Storage API', 'Netlify']
+  },
+  {
+    id: 'colorlab',
+    title: 'ColorLab',
+    tagline: 'Interactive Color Palette & Gradient Studio',
+    category: 'Creative Design Utility',
+    liveUrl: 'https://colorlabmix.netlify.app',
+    status: 'Live on Netlify',
+    description: 'A browser-based color utility for web designers and developers to experiment with gradient generation, palette mixing, and instant CSS color code copying.',
+    highlights: [
+      'Real-time color blending & gradient manipulation canvas',
+      'One-click hex, RGB, and CSS snippet copying to clipboard',
+      'Responsive palette preview cards across multiple screen formats',
+      'Lightweight client-side computation with zero external dependencies'
+    ],
+    tech: ['JavaScript', 'CSS3 Grid/Flexbox', 'HTML5 Canvas', 'Netlify']
+  },
+  {
+    id: 'devmarkdown',
+    title: 'DevMarkdown',
+    tagline: 'Streamlined Web-Based Markdown Editor & Live Previewer',
+    category: 'Developer & Writing Utility',
+    liveUrl: 'https://devmarkdown.netlify.app',
+    status: 'Live on Netlify',
+    description: 'A clean, distraction-free markdown editing workspace with real-time side-by-side rendering, export capabilities, and dark-mode styling.',
+    highlights: [
+      'Instant side-by-side live markdown preview engine',
+      'Formatted code block highlighting and table parsing',
+      'Quick file export options for documentation and notes',
+      'Zero layout shift interface with lightweight bundle size'
+    ],
+    tech: ['JavaScript', 'Markdown Parser', 'CSS3', 'Netlify']
+  },
+  {
+    id: 'focussound',
+    title: 'Focussound',
+    tagline: 'Ambient Audio Web Application for Focus & Productivity',
+    category: 'Audio Utility Platform',
+    liveUrl: 'https://focussound.netlify.app',
+    status: 'Live on Netlify',
+    description: 'An audio-centric web utility delivering minimal ambient soundscapes with seamless state controls and responsive layout configurations.',
+    highlights: [
+      'Custom web audio player architecture',
+      'Zero-latency ambient loop playback',
+      'Custom background configurations & theme engine',
+      'Optimized lightweight asset delivery'
+    ],
+    tech: ['JavaScript', 'HTML5 Audio', 'Tailwind CSS', 'Netlify']
+  }
+];
 ---
 
-<BaseLayout title="Selected Work & Case Studies | Brikwerk Engineering">
-  <Navbar client:load />
-  <main class="min-h-screen pt-32 pb-20 px-6 max-w-7xl mx-auto">
-    <div class="space-y-4 max-w-3xl">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono">
-        <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
-        Case Studies
+<BaseLayout 
+  title="Our Work & Case Studies — Brikwerk"
+  description="Selected web applications, interactive experiences, and software platforms engineered by Brikwerk."
+>
+  <div class="py-12 sm:py-20">
+    
+    <!-- Hero Header -->
+    <section class="text-center max-w-4xl mx-auto px-4 mb-20">
+      <div class="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-4 py-1.5 text-xs font-mono font-medium text-cyan-400 mb-6">
+        <span class="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+        Selected Deployments
       </div>
-      <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white">
-        Engineering Outcomes & Proof
+      
+      <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white mb-6 leading-tight">
+        Engineered Digital Products, <br class="hidden sm:inline" />
+        <span class="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 via-teal-300 to-indigo-400">
+          Built for Impact.
+        </span>
       </h1>
-      <p class="text-lg text-neutral-400">
-        A showcase of production software, custom platforms, and measurable performance benchmarks.
+      
+      <p class="text-slate-400 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto">
+        A showcase of original web platforms designed to engage social media consumers, boost productivity, and deliver high-performance digital experiences.
       </p>
-    </div>
+    </section>
 
-    <div class="mt-16 p-12 rounded-2xl bg-neutral-900/40 border border-neutral-800/80 text-center">
-      <p class="text-neutral-400 font-mono text-sm">Case studies and WorkGrid.tsx interactive showcase coming in Phase 3.</p>
-    </div>
-  </main>
-  <Footer client:load />
+    <!-- Projects Grid -->
+    <section class="max-w-7xl mx-auto px-4 mb-24 space-y-12">
+      {projects.map((project) => (
+        <div class="relative overflow-hidden rounded-3xl border border-slate-800 bg-slate-900/60 p-8 sm:p-12 backdrop-blur-md hover:border-cyan-500/30 transition-all duration-300">
+          
+          <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-8 mb-8">
+            <div class="max-w-2xl">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xs font-mono text-cyan-400">{project.category}</span>
+                <span class="text-slate-600">•</span>
+                <span class="inline-flex items-center gap-1.5 text-xs font-mono text-emerald-400">
+                  <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                  {project.status}
+                </span>
+              </div>
+              
+              <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-2">
+                {project.title}
+              </h2>
+              <p class="text-base text-slate-300 font-medium mb-4">
+                {project.tagline}
+              </p>
+              <p class="text-sm text-slate-400 leading-relaxed">
+                {project.description}
+              </p>
+            </div>
+
+            <!-- Action Button -->
+            <div class="shrink-0">
+              <a 
+                href={project.liveUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 rounded-xl bg-slate-800 border border-slate-700 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-700 hover:border-cyan-500/50 transition-all duration-200"
+              >
+                <span>Launch Live App</span>
+                <svg class="h-4 w-4 text-cyan-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Feature Highlights -->
+          <div class="border-t border-slate-800/80 pt-6 mb-8">
+            <h3 class="text-xs font-mono text-slate-400 uppercase tracking-wider mb-4">Key Technical Highlights</h3>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {project.highlights.map((highlight) => (
+                <li class="flex items-start gap-2.5 text-xs text-slate-300">
+                  <svg class="h-4 w-4 text-cyan-400 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{highlight}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Tech Stack Tags -->
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800/40">
+            {project.tech.map((t) => (
+              <span class="rounded-lg border border-slate-800 bg-slate-950/80 px-3 py-1 text-xs font-mono text-slate-400">
+                {t}
+              </span>
+            ))}
+          </div>
+
+        </div>
+      ))}
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="max-w-4xl mx-auto px-4 text-center">
+      <div class="rounded-3xl border border-slate-800 bg-slate-900/40 p-8 sm:p-12">
+        <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">
+          Have a platform idea in mind?
+        </h2>
+        <p class="text-slate-400 text-sm mb-6 max-w-lg mx-auto">
+          Let's build a fast, responsive, and visually engaging web application for your brand.
+        </p>
+        <a 
+          href="/#estimator" 
+          class="inline-flex items-center gap-2 rounded-xl bg-cyan-500 px-6 py-3 text-sm font-bold text-slate-950 hover:bg-cyan-400 transition-all duration-200"
+        >
+          Calculate Project Estimate
+        </a>
+      </div>
+    </section>
+
+  </div>
 </BaseLayout>

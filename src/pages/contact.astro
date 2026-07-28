@@ -1,13 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
 import DirectContactForm from '../components/sections/DirectContactForm';
 import ProjectEstimator from '../components/calculator/ProjectEstimator';
 ---
 
 <BaseLayout title="Contact & Project Intake | Brikwerk Engineering">
-  <Navbar client:load />
   <main class="min-h-screen pt-32 pb-20 px-6 max-w-7xl mx-auto space-y-16">
     <div class="space-y-4 max-w-3xl">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-mono">
@@ -32,5 +29,4 @@ import ProjectEstimator from '../components/calculator/ProjectEstimator';
       </div>
     </div>
   </main>
-  <Footer client:load />
 </BaseLayout>
